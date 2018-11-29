@@ -13,12 +13,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @author DW
  * @date 2018/11/29
  */
-class test1_3 {
-    private ByteArrayOutputStream bytes = null;
-    private ByteArrayInputStream inputStream = null;
-    private String numbers = null;
+class Test1_3 {
+    private ByteArrayOutputStream bytes = null;//输出流
+    private ByteArrayInputStream inputStream = null;//输入流
+    private String numbers = null;//被测试数据
     private final String lineSeparator = System.lineSeparator();
 
+    //重定向输出流
     @BeforeEach
     void setUp() {
         bytes = new ByteArrayOutputStream();
@@ -30,6 +31,7 @@ class test1_3 {
         System.setOut(System.out);
     }
 
+    //测试
     @Test
     void test1() {
         numbers = "12" + lineSeparator + "12" + lineSeparator + "12" + lineSeparator;
