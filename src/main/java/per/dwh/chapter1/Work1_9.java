@@ -5,7 +5,7 @@ package per.dwh.chapter1;
  * @date 2018/11/29
  */
 
-public class Work1_9 {
+class Work1_9 {
     static String getBinary(int number) {
         StringBuilder stringBuilder = new StringBuilder();
         if (number == 0) {
@@ -21,5 +21,13 @@ public class Work1_9 {
             }
         }
         return stringBuilder.reverse().toString();
+    }
+
+    static String answer(int number) {
+        StringBuilder s = new StringBuilder();
+        for (int n = number; n > 0; n /= 2) {
+            s.insert(0, (n % 2));
+        }
+        return s.toString();
     }
 }
