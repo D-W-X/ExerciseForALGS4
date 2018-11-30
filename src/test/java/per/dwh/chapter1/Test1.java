@@ -2,6 +2,7 @@ package per.dwh.chapter1;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -223,14 +224,12 @@ class Test1_13 {
 }
 
 class Test1_14 {
-    @Test
+    @RepeatedTest(1000)
     void test1() {
         Random random = new Random(System.currentTimeMillis());
-        for (int i = 0; i < 100; i++) {
-            int a = random.nextInt();
-            a = Math.abs(a);
-            assertEquals((int) (Math.log(a) / Math.log(a)), Work1_14.lg(a), a);
-        }
+        int a = random.nextInt();
+        a = Math.abs(a);
+        assertEquals((int) (Math.log(a) / Math.log(a)), Work1_14.lg(a), a);
     }
 }
 
