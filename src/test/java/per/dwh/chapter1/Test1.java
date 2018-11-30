@@ -221,3 +221,15 @@ class Test1_13 {
     }
 
 }
+
+class Test1_14 {
+    @Test
+    void test1() {
+        Random random = new Random(System.currentTimeMillis());
+        for (int i = 0; i < 100; i++) {
+            int a = random.nextInt();
+            a = Math.abs(a);
+            assertEquals((int) (Math.log(a) / Math.log(a)), Work1_14.lg(a), a);
+        }
+    }
+}

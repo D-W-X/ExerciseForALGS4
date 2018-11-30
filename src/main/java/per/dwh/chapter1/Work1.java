@@ -109,3 +109,19 @@ class Work1_13 {
         return newMatrix;
     }
 }
+
+class Work1_14 {
+    static int lg(int n) {
+        int i = 0;
+        if (n <= 0) {
+            return -1;
+        }
+        int total = 1;
+        //Out of bounds.
+        while (total < n && total > 0) {
+            i++;
+            total *= 2;
+        }
+        return i;
+    }
+}
