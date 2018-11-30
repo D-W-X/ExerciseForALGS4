@@ -125,3 +125,18 @@ class Work1_14 {
         return i;
     }
 }
+
+class Work1_15 {
+    static int[] historgram(int[] a, int m) {
+        if (a == null || a.length == 0) {
+            return null;
+        }
+        int[] b = new int[m + 1];
+
+        for (int i : a) {
+            b[i] += 1;
+        }
+
+        return b;
+    }
+}

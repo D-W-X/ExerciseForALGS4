@@ -233,3 +233,13 @@ class Test1_14 {
         }
     }
 }
+
+class Test1_15 {
+    @Test
+    void test1() {
+        int[] a = new int[]{1, 2, 1, 2, 3, 1, 2, 3, 1, 3, 4, 2, 2, 3, 4, 2, 1, 3, 4, 2, 3, 3, 5, 3, 2, 3, 5};
+        int b = 5;
+        int[] c = new int[]{0, 5, 8, 9, 3, 2};
+        assertArrayEquals(c, Work1_15.historgram(a, b));
+    }
+}
