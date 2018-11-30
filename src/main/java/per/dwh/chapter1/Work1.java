@@ -140,3 +140,19 @@ class Work1_15 {
         return b;
     }
 }
+
+class Work1_19 {
+    static int[] f(int n) {
+        //It will out of bounds if n is bigger than 45.
+        if (n > 45) {
+            n = 45;
+        }
+        int[] out = new int[n + 1];
+        out[0] = 1;
+        out[1] = 1;
+        for (int i = 2; i < n + 1; i++) {
+            out[i] = out[i - 1] + out[i - 2];
+        }
+        return out;
+    }
+}

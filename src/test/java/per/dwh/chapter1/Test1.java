@@ -243,3 +243,14 @@ class Test1_15 {
         assertArrayEquals(c, Work1_15.historgram(a, b));
     }
 }
+
+class Test1_19 {
+    @Test
+    void test1() {
+        double sFive = Math.sqrt(5);
+        for (int n = 3; n < 45; n++) {
+            int outs = (int) ((1 / sFive) * (Math.pow((1 + sFive) / 2, n) - Math.pow((1 - sFive) / 2, n)));
+            assertEquals(outs, Work1_19.f(n - 1)[n - 1]);
+        }
+    }
+}
