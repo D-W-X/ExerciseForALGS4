@@ -253,3 +253,10 @@ class Test1_19 {
         }
     }
 }
+
+class Test1_20 {
+    @RepeatedTest(1)
+    void test() {
+        System.out.println(Work1_20.cau(10));
+    }
+}

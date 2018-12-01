@@ -157,3 +157,17 @@ class Work1_19 {
     }
 }
 
+class Work1_20 {
+    /**
+     * 这里不要先计算阶乘，不然会由于阶乘增长速度过快而缩小计算范围。
+     */
+    static double cau(int n) {
+        if (n <= 0) {
+            return Double.NaN;
+        }
+        if (n == 1) {
+            return 0;
+        }
+        return Math.log(n) + cau(n - 1);
+    }
+}
