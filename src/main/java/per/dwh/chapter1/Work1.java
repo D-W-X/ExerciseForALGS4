@@ -1,5 +1,9 @@
 package per.dwh.chapter1;
 
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -84,7 +88,7 @@ class Work1_11 {
         System.out.println(s);
     }
 
-    private static void addNumber(StringBuilder s, int number) {
+    static void addNumber(StringBuilder s, int number) {
         if (number < 10) {
             s.append(number).append("   ");
         } else if (number < 100) {
@@ -169,5 +173,65 @@ class Work1_20 {
             return 0;
         }
         return Math.log(n) + cau(n - 1);
+    }
+}
+
+class Work1_21 {
+    @Getter
+    @Setter
+    static class Data {
+        private String name;
+        private int num1;
+        private int num2;
+
+        private String dev() {
+            return String.format("%.2f", num1 * 1.0 / num2);
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder s = new StringBuilder();
+            s.append(name);
+            for (int i = 0; i < 10 - name.length(); i++) {
+                s.append(" ");
+            }
+            Work1_11.addNumber(s, num1);
+            Work1_11.addNumber(s, num2);
+            s.append(this.dev()).append('\n');
+            return s.toString();
+        }
+    }
+
+    private static Data getData(String s) {
+        Data d = new Data();
+        String[] line = s.split(" ");
+        d.setName(line[0]);
+        d.setNum1(Integer.parseInt(line[1]));
+        d.setNum2(Integer.parseInt(line[2]));
+        return d;
+    }
+
+    private static void printTable() {
+        Scanner s = new Scanner(System.in);
+        ArrayList<Data> datas = new ArrayList<>();
+        String line;
+        while (s.hasNextLine() && !"".equals(line = s.nextLine().trim())) {
+            datas.add(getData(line));
+        }
+        StringBuilder table = new StringBuilder();
+        table.append("ord name      num num dev");
+        table.append('\n');
+        for (int i = 0; i < datas.size(); i++) {
+            Work1_11.addNumber(table, i);
+            table.append(datas.get(i));
+        }
+        System.out.println(table);
+    }
+
+    /**
+     * I don't want to test!
+     */
+    public static void main(String[] args) {
+        printTable();
     }
 }
