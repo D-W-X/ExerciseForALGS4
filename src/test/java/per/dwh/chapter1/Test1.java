@@ -10,6 +10,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Random;
 
+import static java.lang.Math.abs;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -119,7 +120,7 @@ class Test1_9 {
         Random random = new Random(System.currentTimeMillis());
         for (int i = 0; i < 1000; i++) {
             int a = random.nextInt();
-            a = Math.abs(a);
+            a = abs(a);
             assertEquals(Integer.toBinaryString(a), Work1_9.getBinary(a), Integer.toString(a));
         }
     }
@@ -228,7 +229,7 @@ class Test1_14 {
     void test1() {
         Random random = new Random(System.currentTimeMillis());
         int a = random.nextInt();
-        a = Math.abs(a);
+        a = abs(a);
         assertEquals((int) (Math.log(a) / Math.log(a)), Work1_14.lg(a), a);
     }
 }
@@ -258,5 +259,31 @@ class Test1_20 {
     @RepeatedTest(1)
     void test() {
         System.out.println(Work1_20.cau(10));
+    }
+}
+
+class Test1_27 {
+    @RepeatedTest(1000)
+    void test() {
+        Random r = new Random();
+        //It takes me about 2 and a half minutes, maybe bound being 20 is ok.
+        int a = r.nextInt(30);
+        int b = r.nextInt(30);
+        a = abs(a);
+        b = abs(b);
+        double c = r.nextDouble();
+        c = abs(c);
+        System.out.println(a + "   " + b + "   " + c);
+        assertEquals(binomial1(a, b, c), Work1_27.binomial(a, b, c));
+    }
+
+    private static double binomial1(int N, int k, double p) {
+        if (N == 0 && k == 0) {
+            return 1.0;
+        }
+        if (N < 0 || k < 0) {
+            return 0;
+        }
+        return (1 - p) * binomial1(N - 1, k, p) + p * binomial1(N - 1, k - 1, p);
     }
 }

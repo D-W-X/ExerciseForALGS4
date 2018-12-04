@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -233,5 +234,65 @@ class Work1_21 {
      */
     public static void main(String[] args) {
         printTable();
+    }
+}
+
+class Work1_22 {
+    private static int rank(int key, int[] a, int lo, int hi, int n) {
+        if (lo > hi) {
+            return -1;
+        }
+        int mid = (hi + lo) / 2;
+        StringBuilder s = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            s.append("  ");
+        }
+        System.out.println(s.append(lo).append("  ").append(hi));
+        if (key < a[mid]) {
+            return rank(key, a, lo, mid - 1, n + 1);
+        } else if (key > a[mid]) {
+            return rank(key, a, mid + 1, hi, n + 1);
+        } else {
+            return mid;
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] a = new int[]{1, 3, 4, 6, 7, 9, 10, 12, 45, 67};
+        rank(7, a, 0, 10, 0);
+    }
+}
+
+class Work1_24 {
+    private static int gcd(int a, int b) {
+        return b == 0 ? a : gcd(b, a % b);
+    }
+
+    public static int euclid() {
+        Scanner s = new Scanner(System.in);
+        int[] a = new int[]{s.nextInt(), s.nextInt()};
+        Arrays.sort(a);
+        return gcd(a[1], a[0]);
+    }
+
+}
+
+class Work1_27 {
+    static double binomial(int N, int k, double p) {
+        double[][] a = new double[N + 2][k + 2];
+        for (int i = -1; i < N + 1; i++) {
+            for (int j = -1; j < k + 1; j++) {
+                if (i == -1 || j == -1) {
+                    a[i + 1][j + 1] = 0;
+                    continue;
+                }
+                if (i == 0 && j == 0) {
+                    a[i + 1][j + 1] = 1;
+                    continue;
+                }
+                a[i + 1][j + 1] = (1 - p) * a[i][j + 1] + p * a[i][j];
+            }
+        }
+        return a[N + 1][k + 1];
     }
 }
