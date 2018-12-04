@@ -296,3 +296,75 @@ class Work1_27 {
         return a[N + 1][k + 1];
     }
 }
+
+class Work1_29 {
+    static int rank(int key, int[] a) {
+        return rank(key, a, 0, a.length);
+    }
+
+    static int cont(int key, int[] a) {
+        return rankHigh(key, a, 0, a.length) - rank(key, a) - 1;
+    }
+
+    private static int rank(int key, int[] a, int lo, int hi) {
+        int mid = (lo + hi) / 2;
+        if ((hi - lo) == 1) {
+            if (lo == 0 && a[0] == key) {
+                return -1;
+            }
+            return lo;
+        }
+        if (a[mid] < key) {
+            return rank(key, a, mid, hi);
+        }
+        if (a[mid] >= key) {
+            return rank(key, a, lo, mid);
+        }
+        return -1;
+    }
+
+    private static int rankHigh(int key, int[] a, int lo, int hi) {
+        int mid = (lo + hi) / 2;
+        if ((hi - lo) == 1) {
+            if (hi == a.length - 1 && a[hi] == key) {
+                return hi + 1;
+            }
+            return hi;
+        }
+        if (a[mid] <= key) {
+            return rankHigh(key, a, mid, hi);
+        }
+        if (a[mid] > key) {
+            return rankHigh(key, a, lo, mid);
+        }
+        return -1;
+    }
+
+
+}
+
+class Work1_30 {
+    static boolean[][] prime(int n) {
+        boolean[][] b = new boolean[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i < 2 || j < 2) {
+                    b[i][j] = false;
+                    continue;
+                }
+                b[i][j] = ((i > j) && (gcd(j, i) == 1)) || ((i < j) && (gcd(i, j) == 1));
+            }
+        }
+        return b;
+    }
+
+    private static int gcd(int a, int b) {
+        return a == 0 ? b : gcd(b % a, a);
+    }
+
+    public static void main(String[] args) {
+        for (int i = 0; i < 9; i++) {
+            System.out.println(Arrays.toString(prime(9)[i]));
+        }
+    }
+}

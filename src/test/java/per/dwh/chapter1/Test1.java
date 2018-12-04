@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Arrays;
 import java.util.Random;
 
 import static java.lang.Math.abs;
@@ -286,4 +287,52 @@ class Test1_27 {
         }
         return (1 - p) * binomial1(N - 1, k, p) + p * binomial1(N - 1, k - 1, p);
     }
+}
+
+class Test1_29 {
+    @RepeatedTest(2000)
+    void testRank() {
+        Random random = new Random();
+        int temp = random.nextInt(10000);
+        while (temp <= 0) {
+            temp = random.nextInt(10000);
+        }
+        int[] a = new int[temp];
+        for (int i = 0; i < a.length; i++) {
+            a[i] = random.nextInt(Integer.MAX_VALUE - 1);
+        }
+        int key = a[a.length / 2];
+        Arrays.sort(a);
+        int c = Work1_29.rank(key, a);
+        if (c == -1) {
+            assertEquals(a[0], key);
+        } else {
+            assertTrue(a[c] < key && a[c + 1] == key);
+        }
+    }
+
+    @RepeatedTest(2000)
+    void testCont() {
+        Random random = new Random();
+        int temp = random.nextInt(10000);
+        while (temp <= 0) {
+            temp = random.nextInt(10000);
+        }
+        int[] a = new int[temp];
+        for (int i = 0; i < a.length; i++) {
+            a[i] = random.nextInt(Integer.MAX_VALUE - 1);
+        }
+        int key = a[a.length / 2];
+        Arrays.sort(a);
+        int loc = Work1_29.rank(key, a);
+        int con = Work1_29.cont(key, a);
+        if (loc > -1) {
+            assertTrue(a[loc] < key);
+        }
+        assertTrue(a[loc + 1] == key && a[loc + con] == key);
+        if (loc + con + 1 < a.length) {
+            assertTrue(a[loc + con + 1] > key);
+        }
+    }
+
 }
